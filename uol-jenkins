@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Official Portfolio Website of the Government of the United States - Projects, Cities, Army, Analytics and more." />
+  <meta name="author" content="USA Government" />
+  <meta name="theme-color" content="#003366" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" />
+  <title>USA Government Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'Roboto', sans-serif; background: #f2f6fa; color: #333; line-height: 1.6; }
+    header { background: #003366; color: #fff; padding: 2rem; text-align: center; position: relative; }
+    header img { position: absolute; top: 20px; left: 20px; width: 60px; }
+    header h1 { font-size: 2.5rem; }
+    nav { background: #0055a5; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem; position: sticky; top: 0; z-index: 999; }
+    nav .nav-left { display: flex; gap: 2rem; flex-wrap: wrap; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; transition: 0.3s ease; }
+    nav a:hover { color: #ffdd00; transform: scale(1.1); }
+    #searchInput { padding: 5px; border-radius: 5px; border: none; outline: none; }
+    section { padding: 3rem 5%; animation: fadeIn 1s ease; }
+    h2 { color: #003366; font-size: 2rem; margin-bottom: 1rem; }
+    .project, .counter-box, .feedback-box { background: #fff; padding: 1.5rem; border-left: 5px solid #0055a5; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s ease; }
+    .project:hover, .counter-box:hover { transform: translateY(-5px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; transition: transform 0.4s ease; }
+    .gallery img:hover { transform: scale(1.05); }
+    iframe, canvas { width: 100%; border: none; border-radius: 10px; margin-top: 1rem; }
+    canvas { max-width: 700px; display: block; margin: auto; }
+    .counters { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; text-align: center; margin-top: 2rem; }
+    .counter-box { width: 200px; border-radius: 10px; }
+    .counter { font-size: 2rem; font-weight: bold; color: #0055a5; }
+    .lang-switcher, .feedback-box, form { margin: 2rem auto; max-width: 500px; text-align: center; }
+    .lang-switcher select { padding: 0.5rem; font-size: 1rem; }
+    footer { background: #003366; color: #fff; text-align: center; padding: 2rem; margin-top: 2rem; }
+    #backToTop { position: fixed; bottom: 30px; right: 30px; background: #0055a5; color: #fff; padding: 10px 15px; border: none; border-radius: 50%; font-size: 20px; display: none; cursor: pointer; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA Flag">
+    <h1>Government of the United States</h1>
+    <p>President: John Smith</p>
+  </header>
+
+  <nav>
+    <div class="nav-left">
+      <a href="#projects">Projects</a>
+      <a href="#cities">Cities</a>
+      <a href="#army">Army</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#map">Map</a>
+      <a href="#departments">Departments</a>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search...">
+  </nav>
+
+  <marquee behavior="scroll" direction="left" style="background:#ffdd00; color:#000; padding:5px; font-weight:bold;">Live Update: President signs new education bill • Infrastructure project phase 2 launched • Military budget increased for 2025</marquee>
+
+  <section id="projects">
+    <h2>Major Government Projects</h2>
+    <div class="project"> <h3>Education Reform</h3><p>Improving schools and classrooms.</p></div>
+    <div class="project"> <h3>Agriculture</h3><p>Modernizing irrigation and subsidies.</p></div>
+    <div class="project"> <h3>Roads</h3><p>New highways, expressways, and rural roads.</p></div>
+    <div class="project"> <h3>Healthcare</h3><p>More hospitals, cheaper treatment, and health cards.</p></div>
+  </section>
+
+  <section id="cities">
+    <h2>Major Cities</h2>
+    <ul><li>New York City</li><li>Los Angeles</li><li>Chicago</li><li>Houston</li><li>Phoenix</li><li>Philadelphia</li></ul>
+  </section>
+
+  <section class="counters">
+    <div class="counter-box"><div class="counter" data-target="331000000">0</div><p>Population</p></div>
+    <div class="counter-box"><div class="counter" data-target="2300000000">0</div><p>Healthcare Budget ($)</p></div>
+    <div class="counter-box"><div class="counter" data-target="500000000">0</div><p>Education Budget ($)</p></div>
+    <div class="counter-box"><div class="counter" data-target="1500000000">0</div><p>Infrastructure Budget ($)</p></div>
+  </section>
+
+  <section id="army">
+    <h2>Military Equipment Overview</h2>
+    <canvas id="armyChart"></canvas>
+  </section>
+
+  <section id="gallery">
+    <h2>Image Gallery</h2>
+    <div class="gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/US_Capitol_west_side.JPG/640px-US_Capitol_west_side.JPG" alt="Capitol">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/USDA_headquarters.jpg/640px-USDA_headquarters.jpg" alt="USDA">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/White_House_north_and_south_sides.jpg/640px-White_House_north_and_south_sides.jpg" alt="White House">
+    </div>
+  </section>
+
+  <section id="map">
+    <h2>Map of the United States</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25164548.63100944!2d-113.7404701!3d36.2099549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8b1817779794f%3A0x1f57ed4d31b0b3d5!2sUnited%20States!5e0!3m2!1sen!2sus!4v1626850543016!5m2!1sen!2sus"></iframe>
+  </section>
+
+  <section id="departments">
+    <h2>Departments</h2>
+    <div class="project"><h3>Department of Education</h3><p>Handles policies, programs, and budgets for education nationwide.</p></div>
+    <div class="project"><h3>Department of Defense</h3><p>Manages the Armed Forces and defense strategies.</p></div>
+    <div class="project"><h3>Department of Health</h3><p>Focuses on public health, medical care, and health programs.</p></div>
+  </section>
+
+  <section class="lang-switcher">
+    <h2>Select Language</h2>
+    <select onchange="translatePage(this.value)">
+      <option value="en">English</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+    </select>
+  </section>
+
+  <section class="feedback-box">
+    <h2>Send Feedback</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required /><br/><br/>
+      <input type="email" placeholder="Your Email" required /><br/><br/>
+      <textarea rows="4" placeholder="Your Message" required></textarea><br/><br/>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Government of the United States. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Sitemap</a></p>
+  </footer>
+
+  <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+  <script>
+    const ctx = document.getElementById('armyChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Tanks', 'Helicopters', 'Jets', 'Aircrafts', 'Ships', 'Carriers', 'Subs'],
+        datasets: [{
+          label: 'Equipment',
+          data: [6200, 5000, 2000, 13000, 490, 11, 68],
+          backgroundColor: '#0055a5'
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false }, title: { display: true, text: 'USA Military Overview' } }
+      }
+    });
+
+    const counters = document.querySelectorAll('.counter');
+    const animate = () => {
+      counters.forEach(counter => {
+        const update = () => {
+          const target = +counter.dataset.target;
+          const count = +counter.innerText;
+          const inc = target / 200;
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(update, 10);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        update();
+      });
+    };
+    window.addEventListener('scroll', () => {
+      if (document.querySelector('.counters').getBoundingClientRect().top < window.innerHeight) animate();
+    }, { once: true });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('backToTop').style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    function translatePage(lang) {
+      alert('Switching to ' + lang + ' language (simulated)');
+    }
+  </script>
+</body>
+</html>
